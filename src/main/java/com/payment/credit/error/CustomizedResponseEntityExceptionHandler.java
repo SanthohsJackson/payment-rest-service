@@ -1,6 +1,9 @@
 package com.payment.credit.error;
 
 
+import com.payment.credit.validators.LuhnTenValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +28,14 @@ import java.util.Date;
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+    Logger LOGGER = LoggerFactory.getLogger(CustomizedResponseEntityExceptionHandler.class);
 
     @ExceptionHandler(IllegalArgumentException.class)
     public final ResponseEntity<ErrorDetails> handleUserNotFoundException(IllegalArgumentException ex,
                                                                           WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+        LOGGER.error(errorDetails.getMessage());
+        LOGGER.debug("",ex);
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -39,6 +45,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         ErrorDetails errorDetails = new ErrorDetails(new Date(),
                 ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).reduce("", String::concat),
                 request.getDescription(false));
+        LOGGER.error(errorDetails.getMessage());
+        LOGGER.debug("",ex);
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -46,6 +54,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
                 request.getDescription(false));
+        LOGGER.error(errorDetails.getMessage());
+        LOGGER.debug("",ex);
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -57,7 +67,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         ErrorDetails errorDetails = new ErrorDetails(new Date(),
                 ex.getAllErrors().stream().map(ObjectError::getDefaultMessage).reduce("", String::concat)
                 , request.getDescription(false));
-
+        LOGGER.error(errorDetails.getMessage());
+        LOGGER.debug("",ex);
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 

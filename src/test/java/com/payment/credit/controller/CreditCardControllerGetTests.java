@@ -28,7 +28,7 @@ public class CreditCardControllerGetTests {
 
     @Test
     public void checkGetAll() throws Exception {
-        mvc.perform(get("/cards/")
+        mvc.perform(get("/credit/cards/")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))

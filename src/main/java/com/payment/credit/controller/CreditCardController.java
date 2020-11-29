@@ -14,19 +14,30 @@ import java.util.List;
  * @Author Santhosh Jackson
  **/
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("/credit/cards")
 public class CreditCardController {
 
     @Autowired
     private CreditCardService creditCardService;
 
 
+    /**
+     * Returns all the credit cards available
+     *
+     * @return
+     */
     @GetMapping("/")
     public List<CreditCard> getAllCards() {
         return creditCardService.getAllCards();
     }
 
 
+    /**
+     * Saves a credit card information along with its user.
+     *
+     * @param creditCard
+     * @return
+     */
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public CreditCard createCard(@Valid @RequestBody CreditCard creditCard) {

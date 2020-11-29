@@ -32,7 +32,7 @@ public class CreditCardControllerCreateTests {
     @Test
     public void checkCreate() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        mvc.perform(post("/cards/")
+        mvc.perform(post("/credit/cards/")
                 .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(getCreditCard())))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.cardNumber", is("4014405120749392")))
@@ -46,7 +46,7 @@ public class CreditCardControllerCreateTests {
         card.getUser().setFirstName(null);
 
         ObjectMapper mapper = new ObjectMapper();
-        mvc.perform(post("/cards/")
+        mvc.perform(post("/credit/cards/")
                 .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(card)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message", is("First name can not be null")));
@@ -58,7 +58,7 @@ public class CreditCardControllerCreateTests {
         card.setCardNumber(null);
 
         ObjectMapper mapper = new ObjectMapper();
-        mvc.perform(post("/cards/")
+        mvc.perform(post("/credit/cards/")
                 .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(card)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message", is("Card number can not be null")));

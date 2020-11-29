@@ -27,6 +27,13 @@ public class CreditCardServiceImpl implements CreditCardService {
     public CreditCardServiceImpl() {
     }
 
+    /**
+     * Creates a credit card along with the user associated with it.
+     *
+     * @param creditCard
+     * @return
+     */
+    @Override
     public CreditCard createCard(CreditCard creditCard) {
 
         if (!isValidCreditCard(creditCard.getCardNumber())) {
@@ -41,6 +48,12 @@ public class CreditCardServiceImpl implements CreditCardService {
         return creditCardRepo.save(creditCard);
     }
 
+    /**
+     * Gets all the credit cards available.
+     *
+     * @return
+     */
+    @Override
     public List<CreditCard> getAllCards() {
         return creditCardRepo.findAll();
     }
@@ -52,6 +65,8 @@ public class CreditCardServiceImpl implements CreditCardService {
 
 
     /**
+     * Checks if the credit card number is valid.Checks if the credit card follows the Luhn 10 algorithm.
+     *
      * @param creditCardNumber
      * @return
      */

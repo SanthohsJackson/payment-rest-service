@@ -34,9 +34,9 @@ public class CreditCardServiceTests {
         user.setLastName("TestLastName");
         card.setUser(user);
 
-        card =service.createCard(card);
+        card = service.createCard(card);
 
-        Assertions.assertNotEquals(0 , card.getId());
+        Assertions.assertNotEquals(0, card.getId());
         Assertions.assertNotEquals(0, card.getUser().getId());
     }
 
@@ -65,9 +65,8 @@ public class CreditCardServiceTests {
     }
 
 
-
     @Test
-    public void checkSameCardNumber(){
+    public void checkSameCardNumber() {
         CreditCard card = new CreditCard();
         card.setLimit(100l);
         card.setBalance(0l);
@@ -88,7 +87,7 @@ public class CreditCardServiceTests {
     }
 
     @Test
-    public void checkNegativeLimit(){
+    public void checkNegativeLimit() {
         CreditCard card = new CreditCard();
         card.setLimit(-100l);
         card.setBalance(0l);
