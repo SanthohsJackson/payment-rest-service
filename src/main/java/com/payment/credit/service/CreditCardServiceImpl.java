@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
+ *
+ * Primary service implementation for {@link CreditCardService}
+ *
  * @Author Santhosh Jackson
  **/
 @Service
@@ -31,7 +34,7 @@ public class CreditCardServiceImpl implements CreditCardService {
      * Creates a credit card along with the user associated with it.
      *
      * @param creditCard
-     * @return
+     * @return CreditCard
      */
     @Override
     public CreditCard createCard(CreditCard creditCard) {
@@ -51,7 +54,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     /**
      * Gets all the credit cards available.
      *
-     * @return
+     * @return List<CreditCard>
      */
     @Override
     public List<CreditCard> getAllCards() {
@@ -59,6 +62,12 @@ public class CreditCardServiceImpl implements CreditCardService {
     }
 
 
+    /**
+     *
+     * Checks if the the card number already exists.
+     * @param creditCardNumber
+     * @return boolean
+     */
     public boolean isCardPresent(String creditCardNumber) {
         return creditCardRepo.findFirstByCardNumber(creditCardNumber) != null;
     }
@@ -68,7 +77,7 @@ public class CreditCardServiceImpl implements CreditCardService {
      * Checks if the credit card number is valid.Checks if the credit card follows the Luhn 10 algorithm.
      *
      * @param creditCardNumber
-     * @return
+     * @return boolean
      */
     private boolean isValidCreditCard(String creditCardNumber) {
 
@@ -89,7 +98,7 @@ public class CreditCardServiceImpl implements CreditCardService {
 
     /**
      * @param creditCard
-     * @return
+     * @return boolean
      */
     private boolean containsOnlyNumbers(String creditCard) {
         Pattern pattern = Pattern.compile("^[0-9]\\d*$");

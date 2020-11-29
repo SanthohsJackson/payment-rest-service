@@ -7,6 +7,9 @@ import com.payment.credit.data.CreditCard;
 import java.util.List;
 
 /**
+ *
+ *  Services for {@link CreditCard} functionality
+ *
  * @Author Santhosh Jackson
  **/
 public interface CreditCardService {

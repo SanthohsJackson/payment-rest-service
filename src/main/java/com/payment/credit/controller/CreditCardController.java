@@ -24,7 +24,7 @@ public class CreditCardController {
     /**
      * Returns all the credit cards available
      *
-     * @return
+     * @return List<CreditCard>
      */
     @GetMapping("/")
     public List<CreditCard> getAllCards() {
@@ -36,7 +36,7 @@ public class CreditCardController {
      * Saves a credit card information along with its user.
      *
      * @param creditCard
-     * @return
+     * @return CreditCard
      */
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)

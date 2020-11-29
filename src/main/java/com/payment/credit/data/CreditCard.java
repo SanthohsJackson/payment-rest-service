@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
+ *
+ * Hold the information for a credit card and the associate user.
+ *
  * @Author Santhosh Jackson
  **/
 @Entity

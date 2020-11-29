@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
+ * This class validates if the given card number is Luhn10 compatible.
+ *
  * @Author Santhosh Jackson
  **/
 
@@ -15,6 +17,8 @@ public final class LuhnTenValidator implements Validator<List<Integer>> {
     Logger LOGGER = LoggerFactory.getLogger(LuhnTenValidator.class);
 
     /**
+     * Checks if the given digits are Luhn10 compatible.
+     *
      * @param digits
      * @return
      */
