@@ -30,4 +30,20 @@ public class LuhnTenValidatorTest {
     }
 
 
+    @Test
+    public void checkZeroOnly() {
+        String creditCardNumber = "0000000000000000000";
+
+        List<Integer> digits = creditCardNumber.chars().mapToObj(Character::getNumericValue).collect(Collectors.toList());
+        Assertions.assertFalse(validator.isValid(digits));
+    }
+
+    @Test
+    public void checkNegativeValues() {
+        String creditCardNumber = "-4-98530-854-972-8754";
+        List<Integer> digits = creditCardNumber.chars().mapToObj(Character::getNumericValue).collect(Collectors.toList());
+        Assertions.assertFalse(validator.isValid(digits));
+    }
+
+
 }

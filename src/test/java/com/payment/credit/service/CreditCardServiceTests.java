@@ -21,22 +21,6 @@ public class CreditCardServiceTests {
 
 
     @Test
-    public void checkZeroOnly() {
-        String creditCardNumber = "0000000000000000000";
-
-        CreditCard card = new CreditCard();
-        card.setLimit(100l);
-        card.setBalance(0l);
-        card.setCardNumber(creditCardNumber);
-        card.setUserName("TestName");
-
-        card = service.createCard(card);
-
-        Assertions.assertNotEquals(0, card.getId());
-    }
-
-
-    @Test
     public void checkLengthConditions() {
         CreditCard card = new CreditCard();
         card.setLimit(100l);

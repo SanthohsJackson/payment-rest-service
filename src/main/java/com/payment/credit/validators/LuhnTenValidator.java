@@ -39,6 +39,11 @@ public final class LuhnTenValidator implements Validator<List<Integer>> {
         int sumOfAllNumbers = digits.stream().reduce(0, Integer::sum);
         LOGGER.debug("Sum of all the credit card numbers is : {}", sumOfAllNumbers);
 
+        //check if sum is less than or equal to zero then return false
+        if (sumOfAllNumbers <= 0) {
+            return false;
+        }
+
         // Step 3 : If its divisible by 10 then return true else false
         return sumOfAllNumbers % 10 == 0;
     }
