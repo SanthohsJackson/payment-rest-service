@@ -24,7 +24,8 @@ public final class LuhnTenValidator implements Validator<List<Integer>> {
      */
     public boolean isValid(List<Integer> digits) {
 
-        // Step 1 : Doubling the value of all the numbers with a even index and it they are greater than 9 , We are subtracting  9 from them
+        // Step 1 : Doubling the value of all the numbers with a even index in a descending order
+        // and it they are greater than 9 , we are subtracting  9 from them.
         LOGGER.debug("Number of digits in the card are {}", digits.size());
         for (int i = digits.size() - 2; i >= 0; i = i - 2) {
             int num = digits.get(i) * 2;

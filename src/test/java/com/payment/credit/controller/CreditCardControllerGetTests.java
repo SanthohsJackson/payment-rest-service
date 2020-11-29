@@ -1,7 +1,6 @@
 package com.payment.credit.controller;
 
 import com.payment.credit.data.CreditCard;
-import com.payment.credit.data.User;
 import com.payment.credit.service.CreditCardService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -57,20 +56,14 @@ public class CreditCardControllerGetTests {
         card.setLimit(100l);
         card.setBalance(0l);
         card.setCardNumber("4014405120749392");
-        User user = new User();
-        user.setFirstName("TestName");
-        user.setLastName("TestLastName");
-        card.setUser(user);
+        card.setUserName("TestName");
         cards.add(card);
 
         card = new CreditCard();
         card.setLimit(200l);
         card.setBalance(0l);
         card.setCardNumber("6506104911035323305");
-        user = new User();
-        user.setFirstName("TestNameTwo");
-        user.setLastName("TestLastNameTwo");
-        card.setUser(user);
+        card.setUserName("TestNameTwo");
         cards.add(card);
 
 

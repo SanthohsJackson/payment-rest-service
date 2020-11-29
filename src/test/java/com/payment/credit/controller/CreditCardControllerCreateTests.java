@@ -1,9 +1,7 @@
 package com.payment.credit.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.payment.credit.data.CreditCard;
-import com.payment.credit.data.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- *
  * Integration test and controller api test
  *
  * @Author Santhosh Jackson
@@ -39,20 +36,20 @@ public class CreditCardControllerCreateTests {
                 .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(getCreditCard())))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.cardNumber", is("4014405120749392")))
-                .andExpect(jsonPath("$.user.firstName", is("TestName")));
+                .andExpect(jsonPath("$.userName", is("TestName")));
 
     }
 
     @Test
     public void checkNullFirstNameOnCreate() throws Exception {
         CreditCard card = getCreditCard();
-        card.getUser().setFirstName(null);
+        card.setUserName(null);
 
         ObjectMapper mapper = new ObjectMapper();
         mvc.perform(post("/credit/cards/")
                 .contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(card)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", is("First name can not be null")));
+                .andExpect(jsonPath("$.message", is("Name can not be null")));
     }
 
     @Test
@@ -72,10 +69,8 @@ public class CreditCardControllerCreateTests {
         card.setLimit(100l);
         card.setBalance(0l);
         card.setCardNumber("4014405120749392");
-        User user = new User();
-        user.setFirstName("TestName");
-        user.setLastName("TestLastName");
-        card.setUser(user);
+        card.setUserName("TestName");
+
         return card;
     }
 

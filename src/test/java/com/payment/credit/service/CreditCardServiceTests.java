@@ -2,7 +2,6 @@ package com.payment.credit.service;
 
 
 import com.payment.credit.data.CreditCard;
-import com.payment.credit.data.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,15 +28,11 @@ public class CreditCardServiceTests {
         card.setLimit(100l);
         card.setBalance(0l);
         card.setCardNumber(creditCardNumber);
-        User user = new User();
-        user.setFirstName("TestName");
-        user.setLastName("TestLastName");
-        card.setUser(user);
+        card.setUserName("TestName");
 
         card = service.createCard(card);
 
         Assertions.assertNotEquals(0, card.getId());
-        Assertions.assertNotEquals(0, card.getUser().getId());
     }
 
 
@@ -46,10 +41,7 @@ public class CreditCardServiceTests {
         CreditCard card = new CreditCard();
         card.setLimit(100l);
         card.setBalance(0l);
-        User user = new User();
-        user.setFirstName("TestName");
-        user.setLastName("TestLastName");
-        card.setUser(user);
+        card.setUserName("TestName");
 
         //check when empty
         card.setCardNumber("");
@@ -71,17 +63,12 @@ public class CreditCardServiceTests {
         card.setLimit(100l);
         card.setBalance(0l);
         card.setCardNumber("5181372761753188");
-        User user = new User();
-        user.setFirstName("TestName");
-        user.setLastName("TestLastName");
-        card.setUser(user);
+        card.setUserName("TestName");
         service.createCard(card);
 
 
-        user = new User();
-        user.setFirstName("TestNameTwo");
-        user.setLastName("TestLastNameTwo");
-        card.setUser(user);
+
+        card.setUserName("TestNameTwo");
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> service.createCard(card), "Duplicated card check failed");
     }
@@ -92,10 +79,8 @@ public class CreditCardServiceTests {
         card.setLimit(-100l);
         card.setBalance(0l);
         card.setCardNumber("5181372761753188");
-        User user = new User();
-        user.setFirstName("TestName");
-        user.setLastName("TestLastName");
-        card.setUser(user);
+        card.setUserName("TestName");
+
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> service.createCard(card), "Duplicated card check failed");
     }

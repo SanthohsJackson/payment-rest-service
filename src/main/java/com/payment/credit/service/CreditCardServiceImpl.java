@@ -43,8 +43,10 @@ public class CreditCardServiceImpl implements CreditCardService {
             throw new IllegalArgumentException("Card could not be saved as it was not a valid card number");
         } else if (isCardPresent(creditCard.getCardNumber())) {
             throw new IllegalArgumentException("Card number already exists");
-        } else if (!(creditCard.getLimit() > 0)) {
+        } else if (!(creditCard.getLimit() >= 0)) {
             throw new IllegalArgumentException("Limit can not be negative");
+        }else if (creditCard.getId() >0){
+            throw new IllegalArgumentException("Card id can not be pre-defined");
         }
 
         creditCard.setBalance(0);

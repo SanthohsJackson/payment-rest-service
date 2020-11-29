@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
  * Hold the information for a credit card and the associate user.
  *
  * @Author Santhosh Jackson
@@ -18,21 +17,23 @@ public class CreditCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false, targetEntity = User.class)
-    @JoinColumn(name = "user_Id")
-    @NotNull(message = "User can not be null")
-    private User user;
+    @Column(name = "card_user_name")
+    @NotNull(message = "Name can not be null")
+    @Size(min = 1, message = "Please enter a user name")
+    private String userName;
+
 
     @Column(name = "card_limit")
-    @NotNull(message="Limit can not be null")
+    @NotNull(message = "Limit can not be null")
     private Long limit;
 
     @Column(name = "card_balance")
     private long balance;
 
     @Column(name = "card_number")
-    @NotNull(message="Card number can not be null")
-    @Size(min=12, message="Card number should at least have 12 numbers")
+    @NotNull(message = "Card number can not be null")
+    //TODO need to verify lower bound is ok ?
+    @Size(min = 12, message = "Card number should at least have 12 numbers")
     private String cardNumber;
 
 
@@ -46,16 +47,14 @@ public class CreditCard {
         this.id = id;
     }
 
-    public User getUser() {
 
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(User user) {
-
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
-
 
     public Long getLimit() {
 
