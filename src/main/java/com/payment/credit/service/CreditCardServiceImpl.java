@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- *
  * Primary service implementation for {@link CreditCardService}
  *
  * @Author Santhosh Jackson
@@ -45,7 +44,7 @@ public class CreditCardServiceImpl implements CreditCardService {
             throw new IllegalArgumentException("Card number already exists");
         } else if (!(creditCard.getLimit() >= 0)) {
             throw new IllegalArgumentException("Limit can not be negative");
-        }else if (creditCard.getId() >0){
+        } else if (creditCard.getId() != null && creditCard.getId() > 0) {
             throw new IllegalArgumentException("Card id can not be pre-defined");
         }
 
@@ -65,8 +64,8 @@ public class CreditCardServiceImpl implements CreditCardService {
 
 
     /**
-     *
      * Checks if the the card number already exists.
+     *
      * @param creditCardNumber
      * @return boolean
      */
