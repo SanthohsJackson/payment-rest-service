@@ -34,7 +34,7 @@ public class CreditCardController {
 
 
     /**
-     * Saves a credit card information along with its user.
+     * Saves a credit card information.
      *
      * @param creditCard
      * @return CreditCard

@@ -30,7 +30,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     }
 
     /**
-     * Creates a credit card along with the user associated with it.
+     * Validates and creates a credit card.
      *
      * @param creditCard
      * @return CreditCard
@@ -75,7 +75,7 @@ public class CreditCardServiceImpl implements CreditCardService {
 
 
     /**
-     * Checks if the credit card number is valid.Checks if the credit card follows the Luhn 10 algorithm.
+     * Checks if the credit card number is valid.Checks if the credit card follows the Luhn10 algorithm.
      *
      * @param creditCardNumber
      * @return boolean
