@@ -2,7 +2,7 @@
 
 Repository for payment providers
 
-Currenlty has credit card API's or create and get all credit cards
+Currenlty has credit card API's for create and get all credit cards
 
 ## Getting Started
 
