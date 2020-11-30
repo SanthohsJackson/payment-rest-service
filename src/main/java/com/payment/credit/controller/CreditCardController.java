@@ -27,6 +27,7 @@ public class CreditCardController {
      * @return List<CreditCard>
      */
     @GetMapping("/")
+    @ResponseStatus(HttpStatus.OK)
     public List<CreditCard> getAllCards() {
         return creditCardService.getAllCards();
     }

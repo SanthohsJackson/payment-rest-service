@@ -35,6 +35,16 @@ public class CreditCardServiceTests {
         card.setCardNumber("498530854972874985308549728754");
         Assertions.assertThrows(IllegalArgumentException.class, () -> service.createCard(card), "Length greater than 19 check failed");
 
+    }
+
+
+    @Test
+    public void checkNonNumericCardNumber(){
+        CreditCard card = new CreditCard();
+        card.setLimit(100l);
+        card.setBalance(0l);
+        card.setUserName("TestName");
+
         //check when non numeric
         card.setCardNumber("-+234234WER34@#$");
         Assertions.assertThrows(IllegalArgumentException.class, () -> service.createCard(card), "Non numeric check failed");
